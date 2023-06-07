@@ -103,18 +103,17 @@ We want to identify the top 5-6 bird species sighted at the Katherine Ordway Nat
 
 ```{r}
 # count sightings by species in descending order
-
+sightingsCount <- Corrected %>% group_by(Species) %>% summarise(count = n()) %>% arrange(desc(count))
 
 
 
 # a hint in the text book recommends displaying the top 10 species to choose our threshold
-
+sightingsCount %>% head(10)
+sightingsThreshold <- sightingsCount$Species %>% head(6) 
 
 
 # define a sightings threshold; produce a table with only birds belonging to major species
-
-
-
+Majors <- Corrected %>% filter(Species %in% sightingsThreshold)
 
 ```
 
